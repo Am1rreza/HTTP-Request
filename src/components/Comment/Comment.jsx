@@ -1,10 +1,14 @@
 import "./comments.css";
 
-const Comment = () => {
+const Comment = ({ name, email, body }) => {
   return (
     <div className="comment">
-      <p>User Name</p>
-      <p>Email</p>
+      <p>
+        <span>Name: </span>{name}
+      </p>
+      <p>
+        <span>Email: </span>{email}
+      </p>
     </div>
   );
 };

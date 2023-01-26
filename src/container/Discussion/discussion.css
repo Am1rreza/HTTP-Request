@@ -9,7 +9,6 @@ main {
 }
 
 .commentBox {
-  /* width: 100vw; */
   display: flex;
   align-items: center;
   justify-content: space-between;

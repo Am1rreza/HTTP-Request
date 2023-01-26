@@ -7,9 +7,19 @@
   background-color: #e0e7ff;
   color: #4338ca;
   width: 200px;
-  min-width: 200px;
+  min-width: 300px;
   height: 200px;
   border-radius: 6px;
   font-weight: 500;
   margin-bottom: 1rem;
+  padding: 1rem;
+}
+
+.comment p {
+  white-space: normal;
+  text-align: center;
+}
+
+.comment span {
+  font-weight: 600;
 }
