@@ -1,0 +1,14 @@
+.fullComment {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  gap: 1rem 0;
+  background-color: #e0e7ff;
+  color: #4338ca;
+  width: 600px;
+  height: 200px;
+  border-radius: 6px;
+  font-weight: 500;
+  margin: 1.5rem 0;
+}

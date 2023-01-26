@@ -1,0 +1,13 @@
+.comment {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem 0;
+  background-color: #e0e7ff;
+  color: #4338ca;
+  width: 200px;
+  height: 200px;
+  border-radius: 6px;
+  font-weight: 500;
+}

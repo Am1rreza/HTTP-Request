@@ -1,0 +1,9 @@
+section {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+main {
+  margin: 1.5rem 0;
+}
