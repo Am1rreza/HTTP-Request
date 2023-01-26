@@ -9,16 +9,22 @@ const Discussion = () => {
   const [comments, setComments] = useState(null);
 
   useEffect(() => {
-    axios
-      .get("https://jsonplaceholder.typicode.com/comments")
-      .then((response) => {
-        const data = response.data;
+    // IIFE
+    (async function () {
+      try {
+        const { data } = await axios.get(
+          "https://jsonplaceholder.typicode.com/comments"
+        );
+        console.log(data);
+
         setComments(data.slice(0, 4));
-      })
-      .catch((error) => {
+      } catch (error) {
         alert(error);
-      });
+      }
+    })();
   }, []);
+
+  // get data from api
 
   return (
     <main>
