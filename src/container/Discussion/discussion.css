@@ -7,3 +7,15 @@ section {
 main {
   margin: 1.5rem 0;
 }
+
+.commentBox {
+  /* width: 100vw; */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0 2rem;
+  padding: 0 1rem;
+  overflow-x: scroll;
+  overflow-y: hidden;
+  white-space: nowrap;
+}
