@@ -1,31 +1,16 @@
-import axios from "axios";
 import { useState } from "react";
 import "./newComment.css";
 
-const NewComment = () => {
+const NewComment = ({ postHandler }) => {
   const [comment, setComment] = useState({
     name: "",
     email: "",
-    content: "",
+    body: "",
   });
 
   // Handlers
   const changeHandler = (e) => {
     setComment({ ...comment, [e.target.name]: e.target.value });
-  };
-
-  const postHandler = () => {
-    axios
-      .post("http://localhost:3001/comments", comment)
-      .then((response) => console.log(response.data))
-      .catch((error) => console.log(error));
-
-    // clearing the state
-    setComment({
-      name: "",
-      email: "",
-      content: "",
-    });
   };
 
   return (
@@ -52,12 +37,15 @@ const NewComment = () => {
       <div className="formControl">
         <label>Body</label>
         <textarea
-          name="content"
-          value={comment.content}
+          name="body"
+          value={comment.body}
           onChange={changeHandler}
         ></textarea>
       </div>
-      <button onClick={postHandler} className="addBtn">
+      <button
+        onClick={() => postHandler(comment, setComment)}
+        className="addBtn"
+      >
         Add
       </button>
     </div>

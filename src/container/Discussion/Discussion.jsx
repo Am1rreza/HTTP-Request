@@ -16,11 +16,9 @@ const Discussion = () => {
     // IIFE
     (async function () {
       try {
-        const { data } = await axios.get(
-          "http://localhost:3001/comments"
-        );
+        const { data } = await axios.get("http://localhost:3001/comments");
 
-        setComments(data.slice(0, 4));
+        setComments(data);
       } catch (error) {
         alert(error.message);
       }
@@ -30,6 +28,21 @@ const Discussion = () => {
   // Handlers
   const selectCommentHandler = (id) => {
     setSelectedId(id);
+  };
+
+  const postHandler = (comment, setComment) => {
+    axios
+      .post("http://localhost:3001/comments", comment)
+      .then(() => axios.get("http://localhost:3001/comments"))
+      .then((res) => setComments(res.data))
+      .catch((error) => console.log(error));
+
+    // clearing the state
+    setComment({
+      name: "",
+      email: "",
+      body: "",
+    });
   };
 
   return (
@@ -53,7 +66,7 @@ const Discussion = () => {
         <FullComment commentId={selectedId} />
       </section>
       <section>
-        <NewComment />
+        <NewComment postHandler={postHandler} />
       </section>
     </main>
   );
