@@ -46,6 +46,7 @@ const FullComment = ({ commentId }) => {
           {comment.email}
         </p>
         <p>{comment.body}</p>
+        <button className="deleteBtn">Delete</button>
       </div>
     );
 
