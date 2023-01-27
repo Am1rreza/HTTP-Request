@@ -17,7 +17,7 @@ const Discussion = () => {
     (async function () {
       try {
         const { data } = await axios.get(
-          "https://mocki.io/v1/facc585b-ba70-48cf-8937-17e5ecbd5c31"
+          "https://jsonplaceholder.typicode.com/comments"
         );
 
         setComments(data.slice(0, 4));
