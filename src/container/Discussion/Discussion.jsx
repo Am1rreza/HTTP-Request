@@ -17,7 +17,7 @@ const Discussion = () => {
     (async function () {
       try {
         const { data } = await axios.get(
-          "https://jsonplaceholder.typicode.com/comments"
+          "http://localhost:3001/comments"
         );
 
         setComments(data.slice(0, 4));

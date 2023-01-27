@@ -10,7 +10,7 @@ const FullComment = ({ commentId }) => {
       (async function () {
         try {
           const { data } = await axios.get(
-            `https://jsonplaceholder.typicode.com/comments/${commentId}`
+            `http://localhost:3001/comments/${commentId}`
           );
 
           setComment(data);
@@ -32,7 +32,7 @@ const FullComment = ({ commentId }) => {
   // Handlers
   const deleteHandler = () => {
     axios
-      .delete(`https://jsonplaceholder.typicode.com/comments/${commentId}`)
+      .delete(`http://localhost:3001/comments/${commentId}`)
       .then((response) => console.log(response.data))
       .catch((error) => console.log(error));
   };
