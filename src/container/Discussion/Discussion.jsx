@@ -7,6 +7,7 @@ import "./discussion.css";
 
 const Discussion = () => {
   const [comments, setComments] = useState(null);
+  const [selectedId, setSelectedId] = useState(null);
 
   useEffect(() => {
     // IIFE
@@ -15,7 +16,6 @@ const Discussion = () => {
         const { data } = await axios.get(
           "https://jsonplaceholder.typicode.com/comments"
         );
-        console.log(data);
 
         setComments(data.slice(0, 4));
       } catch (error) {
@@ -24,7 +24,10 @@ const Discussion = () => {
     })();
   }, []);
 
-  // get data from api
+  // Handlers
+  const selectCommentHandler = (id) => {
+    setSelectedId(id);
+  };
 
   return (
     <main>
@@ -36,6 +39,7 @@ const Discussion = () => {
               name={comment.name}
               email={comment.email}
               body={comment.body}
+              onClick={() => selectCommentHandler(comment.id)}
             />
           ))
         ) : (
@@ -45,7 +49,7 @@ const Discussion = () => {
         )}
       </section>
       <section>
-        <FullComment />
+        <FullComment commentId={selectedId} />
       </section>
       <section>
         <NewComment />

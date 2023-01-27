@@ -1,6 +1,6 @@
 import "./fullComment.css";
 
-const FullComment = () => {
+const FullComment = ({ commentId }) => {
   return (
     <div className="fullComment">
       <p>User Name</p>

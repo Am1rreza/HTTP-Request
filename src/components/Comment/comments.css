@@ -13,6 +13,12 @@
   font-weight: 500;
   margin-bottom: 1rem;
   padding: 1rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.comment:hover {
+  background-color: #cbd6f9;
 }
 
 .comment p {
