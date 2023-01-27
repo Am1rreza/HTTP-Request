@@ -1,22 +1,65 @@
+import axios from "axios";
+import { useState } from "react";
 import "./newComment.css";
 
 const NewComment = () => {
+  const [comment, setComment] = useState({
+    name: "",
+    email: "",
+    content: "",
+  });
+
+  // Handlers
+  const changeHandler = (e) => {
+    setComment({ ...comment, [e.target.name]: e.target.value });
+  };
+
+  const postHandler = () => {
+    axios
+      .post("https://jsonplaceholder.typicode.com/comments", comment)
+      .then((response) => console.log(response.data))
+      .catch((error) => console.log(error));
+
+    // clearing the state
+    setComment({
+      name: "",
+      email: "",
+      content: "",
+    });
+  };
+
   return (
     <div className="newComment">
       <h2>Add New Comment</h2>
       <div className="formControl">
         <label>Name</label>
-        <input type="text" />
+        <input
+          name="name"
+          value={comment.name}
+          onChange={changeHandler}
+          type="text"
+        />
       </div>
       <div className="formControl">
         <label>Email</label>
-        <input type="email" />
+        <input
+          name="email"
+          value={comment.email}
+          onChange={changeHandler}
+          type="email"
+        />
       </div>
       <div className="formControl">
         <label>Body</label>
-        <textarea></textarea>
+        <textarea
+          name="content"
+          value={comment.content}
+          onChange={changeHandler}
+        ></textarea>
       </div>
-      <button className="addBtn">Add</button>
+      <button onClick={postHandler} className="addBtn">
+        Add
+      </button>
     </div>
   );
 };
