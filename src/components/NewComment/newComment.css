@@ -8,20 +8,19 @@
   background-color: #e0e7ff;
   color: #4338ca;
   width: 600px;
-  height: 200px;
   border-radius: 6px;
   font-weight: 500;
 }
 
-.inputDiv {
+.formControl {
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 0.5rem;
 }
 
-.inputDiv input,
-.inputDiv textarea {
+.formControl input,
+.formControl textarea {
   outline: none;
   border: 1px solid #ccc;
   border-radius: 4px;
@@ -29,6 +28,16 @@
   font-family: 'Montserrat', sans-serif;
 }
 
-.inputDiv textarea {
+.formControl textarea {
   resize: none;
+}
+
+.addBtn {
+  outline: none;
+  border: none;
+  padding: 7px 25px;
+  background-color: #4338ca;
+  color: #e0e7ff;
+  border-radius: 4px;
+  cursor: pointer;
 }
