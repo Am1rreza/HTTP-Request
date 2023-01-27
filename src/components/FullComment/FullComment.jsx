@@ -29,6 +29,14 @@ const FullComment = ({ commentId }) => {
     borderRadius: "5px",
   };
 
+  // Handlers
+  const deleteHandler = () => {
+    axios
+      .delete(`https://jsonplaceholder.typicode.com/comments/${commentId}`)
+      .then((response) => console.log(response.data))
+      .catch((error) => console.log(error));
+  };
+
   // Conditional rendering
   let commentDetail = <h3 style={h3Styles}>Please select a comment !</h3>;
 
@@ -46,7 +54,9 @@ const FullComment = ({ commentId }) => {
           {comment.email}
         </p>
         <p>{comment.body}</p>
-        <button className="deleteBtn">Delete</button>
+        <button onClick={deleteHandler} className="deleteBtn">
+          Delete
+        </button>
       </div>
     );
 
