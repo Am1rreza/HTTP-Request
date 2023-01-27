@@ -10,7 +10,7 @@ const FullComment = ({ commentId }) => {
       (async function () {
         try {
           const { data } = await axios.get(
-            `https://json-server-vercel-jade-beta.vercel.app/comments/${commentId}`
+            `https://json-server-vercel-jade-beta.vercel.app/api/comments/${commentId}`
           );
 
           setComment(data);
@@ -33,7 +33,7 @@ const FullComment = ({ commentId }) => {
   const deleteHandler = () => {
     axios
       .delete(
-        `https://json-server-vercel-jade-beta.vercel.app/comments/${commentId}`
+        `https://json-server-vercel-jade-beta.vercel.app/api/comments/${commentId}`
       )
       .then((response) => console.log(response.data))
       .catch((error) => console.log(error));

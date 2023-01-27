@@ -16,7 +16,7 @@ const Discussion = () => {
     // IIFE
     (async function () {
       try {
-        const { data } = await axios.get("https://json-server-vercel-jade-beta.vercel.app/comments");
+        const { data } = await axios.get("https://json-server-vercel-jade-beta.vercel.app/api/comments");
 
         setComments(data);
       } catch (error) {
@@ -32,8 +32,8 @@ const Discussion = () => {
 
   const postHandler = (comment, setComment) => {
     axios
-      .post("https://json-server-vercel-jade-beta.vercel.app/comments", comment)
-      .then(() => axios.get("https://json-server-vercel-jade-beta.vercel.app/comments"))
+      .post("https://json-server-vercel-jade-beta.vercel.app/api/comments", comment)
+      .then(() => axios.get("https://json-server-vercel-jade-beta.vercel.app/api/comments"))
       .then((res) => setComments(res.data))
       .catch((error) => console.log(error));
 
