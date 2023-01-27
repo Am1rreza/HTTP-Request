@@ -9,17 +9,20 @@ const Discussion = () => {
   const [comments, setComments] = useState(null);
   const [selectedId, setSelectedId] = useState(null);
 
+  // Styles
+  const h3Styles = { width: "100%", textAlign: "center", margin: "1rem 0" };
+
   useEffect(() => {
     // IIFE
     (async function () {
       try {
         const { data } = await axios.get(
-          "https://jsonplaceholder.typicode.com/comments"
+          "https://mocki.io/v1/facc585b-ba70-48cf-8937-17e5ecbd5c31"
         );
 
         setComments(data.slice(0, 4));
       } catch (error) {
-        alert(error);
+        alert(error.message);
       }
     })();
   }, []);
@@ -43,9 +46,7 @@ const Discussion = () => {
             />
           ))
         ) : (
-          <h3 style={{ width: "100%", textAlign: "center", margin: "1rem 0" }}>
-            Loading...
-          </h3>
+          <h3 style={h3Styles}>Loading...</h3>
         )}
       </section>
       <section>
