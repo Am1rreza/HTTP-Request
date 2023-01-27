@@ -11,4 +11,16 @@
   border-radius: 6px;
   font-weight: 500;
   margin: 1.5rem 0;
+  text-align: center;
+  padding: 10px;
 }
+
+.fullComment p {
+  white-space: normal;
+  text-align: center;
+}
+
+.fullComment span {
+  font-weight: 600;
+}
+
