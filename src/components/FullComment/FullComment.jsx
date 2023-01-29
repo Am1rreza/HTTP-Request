@@ -2,7 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import "./fullComment.css";
 
-const FullComment = ({ commentId }) => {
+const FullComment = ({ commentId, setComments }) => {
   const [comment, setComment] = useState(null);
 
   useEffect(() => {
@@ -30,13 +30,20 @@ const FullComment = ({ commentId }) => {
   };
 
   // Handlers
-  const deleteHandler = () => {
-    axios
-      .delete(
+  const deleteHandler = async () => {
+    try {
+      await axios.delete(
         `https://json-server-vercel-jade-beta.vercel.app/api/comments/${commentId}`
-      )
-      .then((response) => console.log(response.data))
-      .catch((error) => console.log(error));
+      );
+
+      const { data } = await axios.get(
+        "https://json-server-vercel-jade-beta.vercel.app/api/comments"
+      );
+
+      setComments(data);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   // Conditional rendering

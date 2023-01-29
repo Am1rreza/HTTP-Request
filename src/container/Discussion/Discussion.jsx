@@ -83,7 +83,7 @@ const Discussion = () => {
     <main>
       <section className="commentBox">{renderComments()}</section>
       <section>
-        <FullComment commentId={selectedId} />
+        <FullComment commentId={selectedId} setComments={setComments} />
       </section>
       <section>
         <NewComment postHandler={postHandler} />
