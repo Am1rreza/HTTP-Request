@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { toast } from "react-toastify";
 import Comment from "../../components/Comment/Comment";
 import FullComment from "../../components/FullComment/FullComment";
 import NewComment from "../../components/NewComment/NewComment";
@@ -58,10 +59,10 @@ const Discussion = () => {
   const renderComments = () => {
     let renderValue = <h3 style={h3Styles}>Loading...</h3>;
 
-    if (error)
-      return (renderValue = (
-        <h3 style={h3Styles}>Fetching data faild !</h3>
-      ));
+    if (error) {
+      renderValue = <h3 style={h3Styles}>Fetching data faild !</h3>;
+      toast.error("There is an error");
+    }
 
     if (comments && !error) {
       return (renderValue = comments.map((comment) => (
