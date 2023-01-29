@@ -8,7 +8,7 @@ import "./discussion.css";
 const Discussion = () => {
   const [comments, setComments] = useState(null);
   const [selectedId, setSelectedId] = useState(null);
-
+  const [error, setError] = useState(false);
   // Styles
   const h3Styles = { width: "100%", textAlign: "center", margin: "1rem 0" };
 
@@ -22,7 +22,7 @@ const Discussion = () => {
 
         setComments(data);
       } catch (error) {
-        alert(error.message);
+        setError(true);
       }
     })();
   }, []);
@@ -56,10 +56,15 @@ const Discussion = () => {
 
   // Conditional rendering
   const renderComments = () => {
-    let renderedComment = <h3 style={h3Styles}>Loading...</h3>;
+    let renderValue = <h3 style={h3Styles}>Loading...</h3>;
 
-    if (comments) {
-      return (renderedComment = comments.map((comment) => (
+    if (error)
+      return (renderValue = (
+        <h3 style={h3Styles}>Fetching data faild !</h3>
+      ));
+
+    if (comments && !error) {
+      return (renderValue = comments.map((comment) => (
         <Comment
           key={comment.id}
           name={comment.name}
@@ -70,7 +75,7 @@ const Discussion = () => {
       )));
     }
 
-    return renderedComment;
+    return renderValue;
   };
 
   return (
