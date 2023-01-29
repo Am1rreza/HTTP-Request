@@ -16,7 +16,9 @@ const Discussion = () => {
     // IIFE
     (async function () {
       try {
-        const { data } = await axios.get("https://json-server-vercel-jade-beta.vercel.app/api/comments");
+        const { data } = await axios.get(
+          "https://json-server-vercel-jade-beta.vercel.app/api/comments"
+        );
 
         setComments(data);
       } catch (error) {
@@ -32,8 +34,15 @@ const Discussion = () => {
 
   const postHandler = (comment, setComment) => {
     axios
-      .post("https://json-server-vercel-jade-beta.vercel.app/api/comments", comment)
-      .then(() => axios.get("https://json-server-vercel-jade-beta.vercel.app/api/comments"))
+      .post(
+        "https://json-server-vercel-jade-beta.vercel.app/api/comments",
+        comment
+      )
+      .then(() =>
+        axios.get(
+          "https://json-server-vercel-jade-beta.vercel.app/api/comments"
+        )
+      )
       .then((res) => setComments(res.data))
       .catch((error) => console.log(error));
 
@@ -45,23 +54,28 @@ const Discussion = () => {
     });
   };
 
+  // Conditional rendering
+  const renderComments = () => {
+    let renderedComment = <h3 style={h3Styles}>Loading...</h3>;
+
+    if (comments) {
+      return (renderedComment = comments.map((comment) => (
+        <Comment
+          key={comment.id}
+          name={comment.name}
+          email={comment.email}
+          body={comment.body}
+          onClick={() => selectCommentHandler(comment.id)}
+        />
+      )));
+    }
+
+    return renderedComment;
+  };
+
   return (
     <main>
-      <section className="commentBox">
-        {comments ? (
-          comments.map((comment) => (
-            <Comment
-              key={comment.id}
-              name={comment.name}
-              email={comment.email}
-              body={comment.body}
-              onClick={() => selectCommentHandler(comment.id)}
-            />
-          ))
-        ) : (
-          <h3 style={h3Styles}>Loading...</h3>
-        )}
-      </section>
+      <section className="commentBox">{renderComments()}</section>
       <section>
         <FullComment commentId={selectedId} />
       </section>
