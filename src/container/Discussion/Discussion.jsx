@@ -33,19 +33,19 @@ const Discussion = () => {
     setSelectedId(id);
   };
 
-  const postHandler = (comment, setComment) => {
-    axios
-      .post(
+  const postHandler = async (comment, setComment) => {
+    try {
+      await axios.post(
         "https://json-server-vercel-jade-beta.vercel.app/api/comments",
         comment
-      )
-      .then(() =>
-        axios.get(
-          "https://json-server-vercel-jade-beta.vercel.app/api/comments"
-        )
-      )
-      .then((res) => setComments(res.data))
-      .catch((error) => console.log(error));
+      );
+
+      const { data } = await axios.get(
+        "https://json-server-vercel-jade-beta.vercel.app/api/comments"
+      );
+
+      setComments(data);
+    } catch (error) {}
 
     // clearing the state
     setComment({
