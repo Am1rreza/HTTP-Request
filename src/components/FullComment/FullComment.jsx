@@ -2,7 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import "./fullComment.css";
 
-const FullComment = ({ commentId, setComments }) => {
+const FullComment = ({ commentId, setCommentId, setComments }) => {
   const [comment, setComment] = useState(null);
 
   useEffect(() => {
@@ -41,6 +41,8 @@ const FullComment = ({ commentId, setComments }) => {
       );
 
       setComments(data);
+      setComment(null);
+      setCommentId(null);
     } catch (error) {
       console.log(error);
     }
