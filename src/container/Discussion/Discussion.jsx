@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
+import http from "../../Services/httpService";
 import { toast } from "react-toastify";
 import Comment from "../../components/Comment/Comment";
 import FullComment from "../../components/FullComment/FullComment";
@@ -17,9 +17,7 @@ const Discussion = () => {
     // IIFE
     (async function () {
       try {
-        const { data } = await axios.get(
-          "https://json-server-vercel-jade-beta.vercel.app/api/comments"
-        );
+        const { data } = await http.get("/comments");
 
         setComments(data);
       } catch (error) {
@@ -35,14 +33,9 @@ const Discussion = () => {
 
   const postHandler = async (comment, setComment) => {
     try {
-      await axios.post(
-        "https://json-server-vercel-jade-beta.vercel.app/api/comments",
-        comment
-      );
+      await http.post("/comments", comment);
 
-      const { data } = await axios.get(
-        "https://json-server-vercel-jade-beta.vercel.app/api/comments"
-      );
+      const { data } = await http.get("/comments");
 
       setComments(data);
     } catch (error) {}

@@ -1,6 +1,6 @@
-import axios from "axios";
 import { useEffect, useState } from "react";
 import "./fullComment.css";
+import http from "../../Services/httpService";
 
 const FullComment = ({ commentId, setCommentId, setComments }) => {
   const [comment, setComment] = useState(null);
@@ -9,8 +9,8 @@ const FullComment = ({ commentId, setCommentId, setComments }) => {
     if (commentId) {
       (async function () {
         try {
-          const { data } = await axios.get(
-            `https://json-server-vercel-jade-beta.vercel.app/api/comments/${commentId}`
+          const { data } = await http.get(
+            `/comments/${commentId}`
           );
 
           setComment(data);
@@ -32,12 +32,12 @@ const FullComment = ({ commentId, setCommentId, setComments }) => {
   // Handlers
   const deleteHandler = async () => {
     try {
-      await axios.delete(
-        `https://json-server-vercel-jade-beta.vercel.app/api/comments/${commentId}`
+      await http.delete(
+        `/comments/${commentId}`
       );
 
-      const { data } = await axios.get(
-        "https://json-server-vercel-jade-beta.vercel.app/api/comments"
+      const { data } = await http.get(
+        "/comments"
       );
 
       setComments(data);
