@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
-import http from "../../Services/httpService";
 import { toast } from "react-toastify";
 import Comment from "../../components/Comment/Comment";
 import FullComment from "../../components/FullComment/FullComment";
 import NewComment from "../../components/NewComment/NewComment";
 import "./discussion.css";
+import getAllComments from "../../Services/getAllCommentsService";
+import addNewComment from "../../Services/addNewCommentService";
 
 const Discussion = () => {
   const [comments, setComments] = useState(null);
@@ -17,7 +18,7 @@ const Discussion = () => {
     // IIFE
     (async function () {
       try {
-        const { data } = await http.get("/comments");
+        const { data } = await getAllComments();
 
         setComments(data);
       } catch (error) {
@@ -33,9 +34,9 @@ const Discussion = () => {
 
   const postHandler = async (comment, setComment) => {
     try {
-      await http.post("/comments", comment);
+      await addNewComment(comment);
 
-      const { data } = await http.get("/comments");
+      const { data } = await getAllComments();
 
       setComments(data);
     } catch (error) {}
