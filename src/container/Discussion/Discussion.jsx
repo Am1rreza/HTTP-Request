@@ -76,16 +76,16 @@ const Discussion = () => {
   return (
     <main>
       <section className="commentBox">{renderComments()}</section>
-      <section>
+      {/* <section>
         <FullComment
           commentId={selectedId}
           setCommentId={setSelectedId}
           setComments={setComments}
         />
-      </section>
-      <section>
+      </section> */}
+      {/* <section>
         <NewComment postHandler={postHandler} />
-      </section>
+      </section> */}
     </main>
   );
 };

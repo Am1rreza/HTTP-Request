@@ -10,23 +10,8 @@ const Navigation = (props) => {
           </NavLink>
         </li>
         <li>
-          <NavLink activeClassName="activeTab2" to="/about-us">
-            About Us
-          </NavLink>
-        </li>
-        <li>
-          <NavLink activeClassName="activeTab2" to="/profile">
-            Profile
-          </NavLink>
-        </li>
-        <li>
-          <NavLink activeClassName="activeTab2" to="/blogs">
-            Blog
-          </NavLink>
-        </li>
-        <li>
-          <NavLink activeClassName="activeTab2" to="/post">
-            Post
+          <NavLink activeClassName="activeTab2" to="/new-comment">
+            New Comment
           </NavLink>
         </li>
       </ul>
