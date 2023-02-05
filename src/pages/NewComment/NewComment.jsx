@@ -1,7 +1,8 @@
 import { useState } from "react";
 import "./newComment.css";
+import addNewComment from "../../Services/addNewCommentService";
 
-const NewComment = ({ postHandler }) => {
+const NewComment = ({ history }) => {
   const [comment, setComment] = useState({
     name: "",
     email: "",
@@ -11,6 +12,20 @@ const NewComment = ({ postHandler }) => {
   // Handlers
   const changeHandler = (e) => {
     setComment({ ...comment, [e.target.name]: e.target.value });
+  };
+
+  const postHandler = async (comment, setComment) => {
+    try {
+      await addNewComment(comment);
+      history.push("/");
+    } catch (error) {}
+
+    // clearing the state
+    setComment({
+      name: "",
+      email: "",
+      body: "",
+    });
   };
 
   return (

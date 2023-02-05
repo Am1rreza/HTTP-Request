@@ -1,10 +1,9 @@
 import { useEffect, useState } from "react";
-import getAllComments from "../../Services/getAllCommentsService";
 import "./fullComment.css";
 import getOneComment from "../../Services/getOneComment";
 import deleteComment from "../../Services/deleteCommentService";
 
-const FullComment = ({ setCommentId, setComments, match }) => {
+const FullComment = ({ match, history }) => {
   const commentId = match.params.id;
   const [comment, setComment] = useState(null);
 
@@ -34,12 +33,7 @@ const FullComment = ({ setCommentId, setComments, match }) => {
   const deleteHandler = async () => {
     try {
       await deleteComment(commentId);
-
-      const { data } = await getAllComments();
-
-      setComments(data);
-      setComment(null);
-      setCommentId(null);
+      history.push("/");
     } catch (error) {
       console.log(error);
     }

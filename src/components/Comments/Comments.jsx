@@ -3,7 +3,6 @@ import { toast } from "react-toastify";
 import Comment from "./Comment/Comment";
 import "./comments.css";
 import getAllComments from "../../Services/getAllCommentsService";
-import addNewComment from "../../Services/addNewCommentService";
 import { Link } from "react-router-dom";
 
 const Comments = () => {
@@ -24,24 +23,6 @@ const Comments = () => {
       }
     })();
   }, []);
-
-  // Handlers
-  const postHandler = async (comment, setComment) => {
-    try {
-      await addNewComment(comment);
-
-      const { data } = await getAllComments();
-
-      setComments(data);
-    } catch (error) {}
-
-    // clearing the state
-    setComment({
-      name: "",
-      email: "",
-      body: "",
-    });
-  };
 
   // Conditional rendering
   const renderComments = () => {
