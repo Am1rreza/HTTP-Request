@@ -1,8 +1,7 @@
 import axios from "axios";
 
 // Base URL
-axios.defaults.baseURL = "https://json-server-vercel-jade-beta.vercel.app/api";
-
+axios.defaults.baseURL = "http://localhost:8000/";
 axios.interceptors.request.use(
   (request) => {
     console.log(request);
