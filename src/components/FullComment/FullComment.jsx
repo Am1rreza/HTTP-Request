@@ -4,7 +4,8 @@ import "./fullComment.css";
 import getOneComment from "../../Services/getOneComment";
 import deleteComment from "../../Services/deleteCommentService";
 
-const FullComment = ({ commentId, setCommentId, setComments }) => {
+const FullComment = ({ setCommentId, setComments, match }) => {
+  const commentId = match.params.id;
   const [comment, setComment] = useState(null);
 
   useEffect(() => {
@@ -51,20 +52,22 @@ const FullComment = ({ commentId, setCommentId, setComments }) => {
 
   if (comment)
     commentDetail = (
-      <div className="fullComment">
-        <p>
-          <span>Name: </span>
-          {comment.name}
-        </p>
-        <p>
-          <span>Email: </span>
-          {comment.email}
-        </p>
-        <p>{comment.body}</p>
-        <button onClick={deleteHandler} className="deleteBtn">
-          Delete
-        </button>
-      </div>
+      <section>
+        <div className="fullComment">
+          <p>
+            <span>Name: </span>
+            {comment.name}
+          </p>
+          <p>
+            <span>Email: </span>
+            {comment.email}
+          </p>
+          <p>{comment.body}</p>
+          <button onClick={deleteHandler} className="deleteBtn">
+            Delete
+          </button>
+        </div>
+      </section>
     );
 
   return commentDetail;

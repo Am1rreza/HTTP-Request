@@ -1,11 +1,10 @@
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import Comment from "../../components/Comment/Comment";
-import FullComment from "../../components/FullComment/FullComment";
-import NewComment from "../../components/NewComment/NewComment";
 import "./discussion.css";
 import getAllComments from "../../Services/getAllCommentsService";
 import addNewComment from "../../Services/addNewCommentService";
+import { Link } from "react-router-dom";
 
 const Discussion = () => {
   const [comments, setComments] = useState(null);
@@ -60,13 +59,14 @@ const Discussion = () => {
 
     if (comments && !error) {
       return (renderValue = comments.map((comment) => (
-        <Comment
-          key={comment.id}
-          name={comment.name}
-          email={comment.email}
-          body={comment.body}
-          onClick={() => selectCommentHandler(comment.id)}
-        />
+        <Link to={`/comment/${comment.id}`} key={comment.id}>
+          <Comment
+            name={comment.name}
+            email={comment.email}
+            body={comment.body}
+            onClick={() => selectCommentHandler(comment.id)}
+          />
+        </Link>
       )));
     }
 
