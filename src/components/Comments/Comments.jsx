@@ -1,14 +1,13 @@
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
-import Comment from "../../components/Comment/Comment";
-import "./discussion.css";
+import Comment from "./Comment/Comment";
+import "./comments.css";
 import getAllComments from "../../Services/getAllCommentsService";
 import addNewComment from "../../Services/addNewCommentService";
 import { Link } from "react-router-dom";
 
-const Discussion = () => {
+const Comments = () => {
   const [comments, setComments] = useState(null);
-  const [selectedId, setSelectedId] = useState(null);
   const [error, setError] = useState(false);
   // Styles
   const h3Styles = { width: "100%", textAlign: "center", margin: "1rem 0" };
@@ -27,10 +26,6 @@ const Discussion = () => {
   }, []);
 
   // Handlers
-  const selectCommentHandler = (id) => {
-    setSelectedId(id);
-  };
-
   const postHandler = async (comment, setComment) => {
     try {
       await addNewComment(comment);
@@ -64,7 +59,6 @@ const Discussion = () => {
             name={comment.name}
             email={comment.email}
             body={comment.body}
-            onClick={() => selectCommentHandler(comment.id)}
           />
         </Link>
       )));
@@ -73,21 +67,7 @@ const Discussion = () => {
     return renderValue;
   };
 
-  return (
-    <main>
-      <section className="commentBox">{renderComments()}</section>
-      {/* <section>
-        <FullComment
-          commentId={selectedId}
-          setCommentId={setSelectedId}
-          setComments={setComments}
-        />
-      </section> */}
-      {/* <section>
-        <NewComment postHandler={postHandler} />
-      </section> */}
-    </main>
-  );
+  return <section className="commentBox">{renderComments()}</section>;
 };
 
-export default Discussion;
+export default Comments;
